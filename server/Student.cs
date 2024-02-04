@@ -11,7 +11,7 @@
         public bool isActive { get; set; }
         public int avgMarks { get; set; }
         public int courseId { get; set; }
-        //public DateTime lastDay { get; set; }
-        //public int year { get; set; }
+        public DateTime lastDay { get; set; }
+        public int year { get; set; }
     }
 }

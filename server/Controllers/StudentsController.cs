@@ -13,12 +13,12 @@ namespace WebApplication1.Controllers
     {
         public static List<Student> STUDENTS = new List<Student>
         {
-            new Student { id = 1, fname = "Zipi", lname = "Lindenfeld", address = "כהנמן 83 א בני ברק", phone = "0556776310", isActive = false, avgMarks = 98, courseId = 1 },
-            new Student{ id = 2, fname = "Ruth", lname = "Hershler", address = "פתח תקווה", phone = "0533137873", isActive = true, avgMarks = 99,  courseId = 2 },
-            new Student { id = 3, fname = "aaa", lname = "Lindenfeld", address = "בני ברק", phone = "0556776310", isActive = false, avgMarks = 98, courseId = 1 },
-            new Student{ id = 4, fname = "bbb", lname = "Hershler", address = "פתח תקווה", phone = "0533137873", isActive = true, avgMarks = 99, courseId = 3 },
-            new Student { id = 5, fname = "ccc", lname = "Lindenfeld", address = "כהנמן 83", phone = "0556776310", isActive = false, avgMarks = 88, courseId = 2 },
-            new Student{ id = 6, fname = "ddd", lname = "Hershler", address = "פתח תקווה", phone = "0533137873", isActive = true, avgMarks = 9,  courseId = 1 }
+            new Student { id = 1, fname = "Zipi", lname = "Lindenfeld", address = "כהנמן 83 א בני ברק", phone = "0556776310", isActive = false, lastDay = DateTime.Parse("01.01.2021"), avgMarks = 98, year = 1, courseId = 1 },
+            new Student { id = 2, fname = "Ruth", lname = "Hershler", address = "פתח תקווה", phone = "0533137873", isActive = true, avgMarks = 99, year = 1, courseId = 2 },
+            new Student { id = 3, fname = "aaa", lname = "AAA", address = "בני ברק", phone = "0556776310", isActive = false, avgMarks = 98,lastDay = DateTime.Parse("01.01.2021"), year = 2, courseId = 1 },
+            new Student { id = 4, fname = "bbb", lname = "BBB", address = "פתח תקווה", phone = "0533137873", isActive = true, avgMarks = 99, year = 3, courseId = 3 },
+            new Student { id = 5, fname = "ccc", lname = "CCC", address = "כהנמן 83", phone = "0556776310", isActive = false, avgMarks = 88, year = 1,lastDay = DateTime.Parse("01.02.2021"), courseId = 2 },
+            new Student { id = 6, fname = "ddd", lname = "DDD", address = "פתח תקווה", phone = "0533137873", isActive = true, avgMarks = 9, year = 2, courseId = 1 }
         };
 
         // GET: api/<TasksController>
@@ -52,15 +52,18 @@ namespace WebApplication1.Controllers
         // PUT api/<TasksController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Student value)
-        {
+        {   
+            return Ok();
+
             Student student = STUDENTS.Find(s => s.id == id);
             if (student != null)
             {
+                student.fname = value.fname;
+                student.lname = value.lname;
+                student.address = value.address;
                 student.phone = value.phone;
                 student.isActive = value.isActive;
-                student.address = value.address;
-                student.lname = value.lname;
-                student.fname = value.fname;
+                student.year = value.year;
                 student.courseId = value.courseId;
                 return Ok();
             }
